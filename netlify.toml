@@ -1,3 +1,10 @@
 [build]
-  command = "npm install --legacy-peer-deps && npm run build:web"
+  command = "npm install --legacy-peer-deps && expo export:web"
   publish = "web-build"
+
+[dev]
+  command = "expo start --web"
+  port = 3000
+  targetPort = 3000
+
+

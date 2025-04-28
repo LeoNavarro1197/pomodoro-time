@@ -6,8 +6,7 @@
     "ios": "expo start --ios",
     "start": "expo start",
     "prebuild": "expo prebuild",
-    "web": "expo start --web",
-    "build:web": "expo export:web"
+    "web": "expo start --web"
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.1",
