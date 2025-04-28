@@ -5,7 +5,8 @@ import Header from './components/Header';
 import Timer from './components/Timer';
 import { Audio } from "expo-av"
 
-const colors = [ "#F7DC6F", "#AED6F1", "#D7BDD2" ];
+// Colores más vibrantes para cada modo
+const colors = ["#FF9F43", "#48DBFB", "#A29BFE"];
 
 export default function App() {
 const [isWorking, setIsWorking] = useState(false);
@@ -51,8 +52,8 @@ async function PlaySound(){
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors[currentTime]}]}>
-      <View style={{flex: 1, paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
-        <Text style={styles.text}>Pomodoro</Text>
+      <View style={styles.contentContainer}>
+        <Text style={styles.title}>Pomodoro Timer</Text>
         <Header
           currentTime={currentTime}
           setCurrentTime={setCurrentTime}
@@ -64,12 +65,13 @@ async function PlaySound(){
         <TouchableOpacity
           style={[
             styles.button,
-            { backgroundColor: isActive === true ? "#F05754" : "#333333" }
+            { backgroundColor: isActive === true ? "#FF6B6B" : "#2E3A59" }
           ]}
+          activeOpacity={0.8}
           onPress={ButtonIsActive}>
           <Text
-            style={{fontSize: 15, fontWeight: 'bold', color: "white"}}>
-            {isActive ? "STOP" : "START"}</Text>
+            style={styles.buttonText}>
+            {isActive ? "DETENER" : "INICIAR"}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -80,17 +82,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  text: {
-    fontSize: 32,
+  contentContainer: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'center',
-    paddingBottom: 10,
+    paddingBottom: 20,
+    color: '#2E3A59',
+    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
   },
   button: {
-    backgroundColor: "#333333",
-    padding: 10,
-    borderRadius: 10,
-    marginTop: 15,
-    alignItems: "center"
+    width: '80%',
+    padding: 15,
+    borderRadius: 25,
+    marginTop: 30,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: "white",
+    letterSpacing: 1,
   }
 });
